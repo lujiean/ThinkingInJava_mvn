@@ -6,12 +6,13 @@ package com.thinkinginjava.holdingyourobj;
 import static com.thinkinginjava.tools.Tools.*;
 
 import java.util.*;
+import java.util.concurrent.ForkJoinPool.ForkJoinWorkerThreadFactory;
 public class Homework {
 
 	public static void main(String[] args) {
 		/*
-		 * Exercise 1: (2) Create a new class called Gerbil with an int gerbilNumber that¡¯s initialized in the constructor. 
-		 * Give it a method called hop( ) that displays which gerbil number this is, and that it¡¯s hopping. 
+		 * Exercise 1: (2) Create a new class called Gerbil with an int gerbilNumber thatï¿½ï¿½s initialized in the constructor. 
+		 * Give it a method called hop( ) that displays which gerbil number this is, and that itï¿½ï¿½s hopping. 
 		 * Create an ArrayList and add Gerbil objects to the List. Now use the get( ) method to move through the List and call hop( ) for each Gerbil.
 		 */
 		PrintExercise(1);
@@ -109,6 +110,85 @@ public class Homework {
 		 * the Rodents and an Iterator to move through the sequence of Rodents.
 		 */
 		PrintExercise(10);
+
+		/*
+		// * Exercise 11: (2) Write a method that uses an Iterator to step through a Collection and print the toString( ) of each object in the container. 
+		// Fill all the different types of Collections with objects and apply your method to each container.
+		*/
+		PrintExercise(11);
 		
+		/* 
+		Exercise 12: (3) Create and populate a List<Integer>. 
+		Create a second List<Integer> of the same size as the first, 
+		and use ListIterators to read elements from the first List and insert them into the second in reverse order. 
+		(You may want to explore a number of different ways to solve this problem.)
+		 */
+		PrintExercise(12);
+		List<Integer> lst_Int_ex12_1st = new ArrayList<Integer>();
+		lst_Int_ex12_1st.add(5);
+		lst_Int_ex12_1st.add(7);
+		lst_Int_ex12_1st.add(-9);
+		lst_Int_ex12_1st.add(5);
+		lst_Int_ex12_1st.add(1);
+		lst_Int_ex12_1st.add(-1);
+		List<Integer> lst_Int_ex12_2nd = new ArrayList<Integer>();
+		ListIterator<Integer> lI_Int_ex12 = lst_Int_ex12_1st.listIterator();
+
+		int len = lst_Int_ex12_1st.size();
+		int max = 0, cur_integer;
+		for (int i = 0; i < len; i++) {
+			boolean f_b_first_int = true;
+			while (lI_Int_ex12.hasNext()) {
+				cur_integer = lI_Int_ex12.next();
+				if (f_b_first_int) {
+					max = cur_integer;
+					f_b_first_int = false;
+				}
+				if(cur_integer > max){
+					max = cur_integer;
+				}
+			}
+			lst_Int_ex12_2nd.add(max);
+
+			// rollback and remove max
+			boolean f_b_remove = false;
+			while (lI_Int_ex12.hasPrevious()) {
+				cur_integer = lI_Int_ex12.previous();
+				if ( ! f_b_remove) {
+					if(cur_integer == max){
+						lI_Int_ex12.remove();
+						f_b_remove = true;
+					}
+				}
+			}
+		}
+		System.out.print(lst_Int_ex12_2nd.toString());
+
+		/* 
+		Exercise 13: (3) In the innerclasses/GreenhouseController.java example, the class Controller uses an ArrayList. 
+		Change the code to use a LinkedList instead, and use an Iterator to cycle through the set of events.
+		*/
+
+		/* 
+		Exercise 14: (3) Create an empty LinkedList<Integer>. 
+		Using a Listlterator, add Integers to the List by always inserting them in the middle of the List.
+		*/
+		PrintExercise(14);
+		LinkedList<Integer> ll_ex14 = new LinkedList<Integer>();
+		ListIterator<Integer> li_ex14 = (new ArrayList<Integer>()).listIterator();
+		li_ex14.add(1);
+		li_ex14.add(2);
+		li_ex14.add(3);
+
+		int ex14_cur_int;
+		while (li_ex14.hasNext()) {
+			ex14_cur_int = li_ex14.next();
+			if (ll_ex14.size() <= 2) {
+				ll_ex14.addLast(ex14_cur_int);
+			} else {
+				// item add last and move to middle of LinkedList
+				
+			}
+		}
 	}
 }
