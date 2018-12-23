@@ -162,7 +162,7 @@ public class Homework {
 				}
 			}
 		}
-		System.out.print(lst_Int_ex12_2nd.toString());
+		System.out.println(lst_Int_ex12_2nd.toString());
 
 		/* 
 		Exercise 13: (3) In the innerclasses/GreenhouseController.java example, the class Controller uses an ArrayList. 
@@ -175,20 +175,32 @@ public class Homework {
 		*/
 		PrintExercise(14);
 		LinkedList<Integer> ll_ex14 = new LinkedList<Integer>();
-		ListIterator<Integer> li_ex14 = (new ArrayList<Integer>()).listIterator();
-		li_ex14.add(1);
-		li_ex14.add(2);
-		li_ex14.add(3);
+		List<Integer> lst_ex14 = new ArrayList<Integer>();
+		lst_ex14.add(1);
+		lst_ex14.add(2);
+		lst_ex14.add(3);
+		lst_ex14.add(4);
+		lst_ex14.add(5);
+		ListIterator<Integer> li_ex14 = lst_ex14.listIterator();
 
 		int ex14_cur_int;
 		while (li_ex14.hasNext()) {
 			ex14_cur_int = li_ex14.next();
+
+			ll_ex14.addLast(ex14_cur_int);
 			if (ll_ex14.size() <= 2) {
-				ll_ex14.addLast(ex14_cur_int);
+				// item count not > 3 no need put middle
 			} else {
 				// item add last and move to middle of LinkedList
-				
+				for (int i = ll_ex14.size() - 1; i >= ll_ex14.size()/2; i--) {
+					if (i == ll_ex14.size()/2) {
+						ll_ex14.set(i, ex14_cur_int);
+					} else {
+						ll_ex14.set(i, ll_ex14.get(i-1));
+					}
+				} 
 			}
 		}
+		System.out.println(ll_ex14.toString());
 	}
 }
