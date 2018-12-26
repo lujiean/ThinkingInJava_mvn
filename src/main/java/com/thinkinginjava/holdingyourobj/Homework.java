@@ -6,7 +6,6 @@ package com.thinkinginjava.holdingyourobj;
 import static com.thinkinginjava.tools.Tools.*;
 
 import java.util.*;
-import java.util.concurrent.ForkJoinPool.ForkJoinWorkerThreadFactory;
 public class Homework {
 
 	public static void main(String[] args) {
@@ -202,5 +201,133 @@ public class Homework {
 			}
 		}
 		System.out.println(ll_ex14.toString());
+
+		/* Exercise 15: (4) Stacks are often used to evaluate expressions in programming languages.
+		Using net.mindview.util.Stack, evaluate the following expression, 
+		where’+’ means "push the following letter onto the stack," and’-’ 
+		means "pop the top of the stack and print it":
+		"+U+n+c—+e+r+t—+a-+i-+n+t+y—+ -+r+u—+l+e+s—"
+		*/
+		PrintExercise(15);
+		Stack<String> stack_ex15 = new Stack<String>();
+		String str_ex15 = "+U+n+c—+e+r+t—+a-+i-+n+t+y—+ -+r+u—+l+e+s—";
+		int i = 0;
+		String f_str;
+		while (i < str_ex15.length()) {
+			f_str = str_ex15.substring(i, i+1);
+			if (f_str.equals("+")) {
+				i++;
+				f_str = str_ex15.substring(i, i+1);
+				stack_ex15.push(f_str);
+			} else if (f_str.equals("-")) {
+				print(stack_ex15.pop());
+			} else {
+				print("Error");
+			}
+			i++;
+		}
+		print(stack_ex15.toString());
+
+		/* 
+		Exercise 16: (5) Create a Set of the vowels. 
+		Working from UniqueWords.Java, count and display the number of vowels in each input word, 
+		and also display the total number of vowels in the input file.
+		*/
+		PrintExercise(16);
+		Set<String> set_ex16 = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
+		set_ex16.add("a");
+		set_ex16.add("e");
+		set_ex16.add("i");
+		set_ex16.add("o");
+		set_ex16.add("u");
+
+		String str_ex16 = "I am a foolish man!";
+		String sub_str;
+		int cnt = 0, tot_cnt = 0;
+		for (String str : str_ex16.split(" ")) {
+			cnt = 0;
+			for (i = 0; i < str.length(); i++) {
+				sub_str = str.substring(i, i+1);
+				if (set_ex16.contains(sub_str)) {
+					// is vol
+					cnt++;
+				}
+			}
+			System.out.printf("%d ", cnt);
+			tot_cnt = tot_cnt + cnt;
+		}
+		System.out.println("total cnt = " + tot_cnt);
+		// System.out.println(set_ex16);
+
+		/* 
+		Exercise 17: (2) Take the Gerbil class in Exercise 1 and put it into a Map instead,
+		associating each Gerbil’s name (e.g. "Fuzzy" or "Spot") as a String (the key) for each
+		Gerbil (the value) you put in the table. Get an Iterator for the keySet( ) and use it to move through the Map, 
+		looking up the Gerbil for each key and printing out the key and telling the Gerbil to hop( ).
+		*/
+		PrintExercise(17);
+		Map<String, Gerbil> map_ex17 = new HashMap<String, Gerbil>();
+		map_ex17.put("Fuzzy", new Gerbil(9));
+		map_ex17.put("Spot", new Gerbil(78));
+
+		for (String key : map_ex17.keySet()) {
+			Gerbil gb = map_ex17.get(key);
+			System.out.printf("Key: %s ", key);
+			gb.hop();
+		}
+
+		/* 
+		Exercise 18: (3) Fill a HashMap with key-value pairs. 
+		Print the results to show ordering by hash code. 
+		Extract the pairs, sort by key, and place the result into a LinkedHashMap. 
+		Show that the insertion order is maintained.
+		*/
+		PrintExercise(18);
+		Map<Integer, String> map_ex18 = new HashMap<Integer, String>();
+		Map<Integer, String> lmap_ex18 = new LinkedHashMap<Integer, String>();
+		map_ex18.put(1, "hello");
+		map_ex18.put(87, "what");
+		map_ex18.put(9, "putty");
+
+		for (Integer i_key : map_ex18.keySet()) {
+			print(i_key + "=" + map_ex18.get(i_key));
+		}
+
+		//sort Key
+		Integer[] sort_ex18 = null;
+		map_ex18.keySet().toArray(sort_ex18);
+
+		sort_ex18
+		/* 
+		Exercise 19: (2) Repeat the previous exercise with a HashSet and LinkedHashSet.
+		*/
+
+		/* 
+		Exercise 20: (3) Modify Exercise 16 so that you keep a count of the occurrence of each vowel.
+		*/
+
+		/* 
+		Exercise 21: (3) Using a Map<String,Integer>, follow the form of UniqueWords.java to create a program that counts the occurrence of words in a file. Sort the results using Collections.sort( ) with a second argument of String.CASE_INSENSITIVE_ORDER (to produce an alphabetic sort), and display the result.
+		*/
+
+		/* 
+		Exercise 22: (5) Modify the previous exercise so that it uses a class containing a String and a count field to store each different word, and a Set of these objects to maintain the list of words.
+		*/
+
+		/* 
+		Exercise 23: (4) Starting with Statistics.java, create a program that runs the test repeatedly and looks to see if any one number tends to appear more than the others in the results.
+		*/
+
+		/* 
+		Exercise 24: (2) Fill a LinkedHashMap with String keys and objects of your choice. Now extract the pairs, sort them based on the keys, and reinsert them into the Map.
+		*/
+
+		/* 
+		Exercise 25: (3) Create a Map<String,ArrayList<Integer>>. Use net.mindview.TextFile to open a text file and read it in a word at a time (use "\\W+" as the second argument to the TextFile constructor). Count the words as you read them in, and for each word in the file, record in the ArrayList<Integer> the word count associated with that word—this is, in effect, the location in the file where that word was found.
+		*/
+
+		/* 
+		Exercise 26: (4) Take the resulting Map from the previous exercise and re-create the order of the words as they appeared in the original file.
+		*/
 	}
 }
