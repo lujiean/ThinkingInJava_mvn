@@ -294,10 +294,29 @@ public class Homework {
 		}
 
 		//sort Key
-		Integer[] sort_ex18 = null;
-		map_ex18.keySet().toArray(sort_ex18);
+		Integer[] sort_ex18 = map_ex18.keySet().toArray(new Integer[0]);
+		int minIndex, temp;
+		len = sort_ex18.length;
+		for (i = 0; i < len - 1; i++) {
+			minIndex = i;
+			for (int j = i + 1; j < len; j++) {
+				if(sort_ex18[j] < sort_ex18[minIndex]){
+					minIndex = j;
+				}
+			}
+			temp = sort_ex18[i];
+			sort_ex18[i] = sort_ex18[minIndex];
+			sort_ex18[minIndex] = temp;
+		}
 
-		sort_ex18
+		// put into lhmap
+		for (Integer i_key : sort_ex18) {
+			lmap_ex18.put(i_key, map_ex18.get(i_key));
+		}
+
+		for (Integer i_key : lmap_ex18.keySet()) {
+			print(i_key + "=" + lmap_ex18.get(i_key));
+		}
 		/* 
 		Exercise 19: (2) Repeat the previous exercise with a HashSet and LinkedHashSet.
 		*/
@@ -307,8 +326,14 @@ public class Homework {
 		*/
 
 		/* 
-		Exercise 21: (3) Using a Map<String,Integer>, follow the form of UniqueWords.java to create a program that counts the occurrence of words in a file. Sort the results using Collections.sort( ) with a second argument of String.CASE_INSENSITIVE_ORDER (to produce an alphabetic sort), and display the result.
+		Exercise 21: (3) Using a Map<String,Integer>, follow the form of UniqueWords.java 
+		to create a program that counts the occurrence of words in a file. 
+		Sort the results using Collections.sort( ) with a second argument of String.CASE_INSENSITIVE_ORDER 
+		(to produce an alphabetic sort), and display the result.
 		*/
+		Map<String, Integer> map_ex21 = new TreeMap<String, Integer>();
+		Set<String> words = new TreeSet<String>(new TextFile("Generator.java"));
+		
 
 		/* 
 		Exercise 22: (5) Modify the previous exercise so that it uses a class containing a String and a count field to store each different word, and a Set of these objects to maintain the list of words.
