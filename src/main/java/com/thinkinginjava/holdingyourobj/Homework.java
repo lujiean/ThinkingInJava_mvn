@@ -4,7 +4,9 @@ package com.thinkinginjava.holdingyourobj;
  * Holding Your Objects
  */
 import static com.thinkinginjava.tools.Tools.*;
+import net.mindview.util.*;
 
+import java.lang.reflect.Array;
 import java.util.*;
 public class Homework {
 
@@ -331,14 +333,57 @@ public class Homework {
 		Sort the results using Collections.sort( ) with a second argument of String.CASE_INSENSITIVE_ORDER 
 		(to produce an alphabetic sort), and display the result.
 		*/
+		PrintExercise(21);
 		Map<String, Integer> map_ex21 = new TreeMap<String, Integer>();
-		Set<String> words = new TreeSet<String>(new TextFile("Generator.java"));
+		// Set<String> words = new TreeSet<String>(new TextFile("src\\main\\java\\com\\thinkinginjava\\holdingyourobj\\Generator.java", "\\W+"));
+		ArrayList<String> arr_ex21 = new TextFile("src\\main\\java\\com\\thinkinginjava\\holdingyourobj\\testfile.txt", "\\W+");
 		
+		// System.out.println(words);
+		Collections.sort(arr_ex21, String.CASE_INSENSITIVE_ORDER);
+		System.out.println(arr_ex21);
+
+		for (String str : arr_ex21) {
+			if (map_ex21.containsKey(str)) {
+				i = map_ex21.get(str);
+				map_ex21.put(str, ++i);
+			} else {
+				map_ex21.put(str, 1);
+			}
+		}
+		System.out.println(map_ex21);
 
 		/* 
-		Exercise 22: (5) Modify the previous exercise so that it uses a class containing a String and a count field to store each different word, and a Set of these objects to maintain the list of words.
+		Exercise 22: (5) Modify the previous exercise so that it uses a class containing a String and a count field to store each different word, 
+		and a Set of these objects to maintain the list of words.
 		*/
+		PrintExercise(22);
+		Set<Ex22Container> set_ex22 = new HashSet<Ex22Container>();
+		// Set<String> words = new TreeSet<String>(new TextFile("src\\main\\java\\com\\thinkinginjava\\holdingyourobj\\Generator.java", "\\W+"));
+		ArrayList<String> arr_ex22 = new TextFile("src\\main\\java\\com\\thinkinginjava\\holdingyourobj\\testfile.txt", "\\W+");
+		
+		// System.out.println(words);
+		Collections.sort(arr_ex22, String.CASE_INSENSITIVE_ORDER);
+		System.out.println(arr_ex22);
 
+		for (String str : arr_ex22) {
+			Ex22Container temp_ex22 = new Ex22Container(str);
+			if (set_ex22.contains(temp_ex22)) {
+
+				Ex22Container[] temp_ex22_arr = set_ex22.toArray(new Ex22Container[0]);
+				for (i = 0; i < temp_ex22_arr.length; i++) {
+					if (temp_ex22.equals(temp_ex22_arr[i])) {
+						cur_integer = temp_ex22_arr[i].getCount();
+						break;
+					}
+				}
+				set_ex22.remove(o)
+				
+			} else {
+				set_ex22.add(temp_ex22);
+			}
+		}
+		System.out.println(set_ex22);
+		
 		/* 
 		Exercise 23: (4) Starting with Statistics.java, create a program that runs the test repeatedly and looks to see if any one number tends to appear more than the others in the results.
 		*/
