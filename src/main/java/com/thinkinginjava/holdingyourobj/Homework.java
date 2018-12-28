@@ -360,26 +360,24 @@ public class Homework {
 		Set<Ex22Container> set_ex22 = new HashSet<Ex22Container>();
 		// Set<String> words = new TreeSet<String>(new TextFile("src\\main\\java\\com\\thinkinginjava\\holdingyourobj\\Generator.java", "\\W+"));
 		ArrayList<String> arr_ex22 = new TextFile("src\\main\\java\\com\\thinkinginjava\\holdingyourobj\\testfile.txt", "\\W+");
+		List<Ex22Container> arr_ex22_container = new ArrayList<Ex22Container>();
 		
 		// System.out.println(words);
 		Collections.sort(arr_ex22, String.CASE_INSENSITIVE_ORDER);
 		System.out.println(arr_ex22);
 
+		//cast ArrayList<String> to ArrayList<Ex22Container>
 		for (String str : arr_ex22) {
 			Ex22Container temp_ex22 = new Ex22Container(str);
-			if (set_ex22.contains(temp_ex22)) {
+			arr_ex22_container.add(temp_ex22);
+		}
 
-				Ex22Container[] temp_ex22_arr = set_ex22.toArray(new Ex22Container[0]);
-				for (i = 0; i < temp_ex22_arr.length; i++) {
-					if (temp_ex22.equals(temp_ex22_arr[i])) {
-						cur_integer = temp_ex22_arr[i].getCount();
-						break;
-					}
-				}
-				set_ex22.remove(o)
-				
+		//check and update count
+		for (Ex22Container container : arr_ex22_container) {
+			if (set_ex22.contains(container)) {
+				//update count
 			} else {
-				set_ex22.add(temp_ex22);
+				set_ex22.add(container);
 			}
 		}
 		System.out.println(set_ex22);
