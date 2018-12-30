@@ -374,17 +374,28 @@ public class Homework {
 
 		//check and update count
 		for (Ex22Container container : arr_ex22_container) {
-			if (set_ex22.contains(container)) {
 				//update count
-			} else {
-				set_ex22.add(container);
+			cur_integer = 0;
+			for (Ex22Container var : set_ex22.toArray(new Ex22Container[set_ex22.size()])) {
+				if (var.equals(container)) {
+					cur_integer = var.getCount();
+					set_ex22.remove(var);
+				}
 			}
+			if (cur_integer > 0) {
+				container.addCount();
+			}
+			set_ex22.add(container);
 		}
 		System.out.println(set_ex22);
 		
 		/* 
-		Exercise 23: (4) Starting with Statistics.java, create a program that runs the test repeatedly and looks to see if any one number tends to appear more than the others in the results.
+		Exercise 23: (4) Starting with Statistics.java, 
+		create a program that runs the test repeatedly and looks to see 
+		if any one number tends to appear more than the others in the results.
 		*/
+		PrintExercise(23);
+		
 
 		/* 
 		Exercise 24: (2) Fill a LinkedHashMap with String keys and objects of your choice. Now extract the pairs, sort them based on the keys, and reinsert them into the Map.

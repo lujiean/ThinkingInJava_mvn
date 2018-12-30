@@ -25,4 +25,8 @@ public class Ex22Container {
         return this.count;
     }
 
+    public String toString(){
+        return (this.key + "=" + this.count);
+    }
+
 }
