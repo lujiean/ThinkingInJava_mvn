@@ -6,6 +6,7 @@ package com.thinkinginjava.holdingyourobj;
 import static com.thinkinginjava.tools.Tools.*;
 import net.mindview.util.*;
 
+import java.awt.peer.SystemTrayPeer;
 import java.lang.reflect.Array;
 import java.util.*;
 public class Homework {
@@ -394,19 +395,81 @@ public class Homework {
 		create a program that runs the test repeatedly and looks to see 
 		if any one number tends to appear more than the others in the results.
 		*/
-		PrintExercise(23);
+
+		/* 
+		Exercise 24: (2) Fill a LinkedHashMap with String keys and objects of your choice. 
+		Now extract the pairs, sort them based on the keys, and reinsert them into the Map.
+		*/
+		PrintExercise(24);
+		Map<String, Integer> map_ex24 = new LinkedHashMap<String, Integer>();
+		map_ex24.put("a", 45);
+		map_ex24.put("c", 90);
+		map_ex24.put("b", 34);
+		System.out.println(map_ex24);
+
+		// sort key
+		List<String> lst_ex24 = new ArrayList<String>(map_ex24.keySet());
+		Collections.sort(lst_ex24);
+		// System.out.println(lst_ex24);
+
+		Map<String, Integer> map_ex24_1 = new LinkedHashMap<String, Integer>();
+		for (String var : lst_ex24) {
+			map_ex24.put(var, map_ex24.get(var));
+			map_ex24_1.put(var, map_ex24.get(var));
+		}
+		System.out.println(map_ex24);
+		System.out.println(map_ex24_1);
+
+		/* 
+		Exercise 25: (3) Create a Map<String,ArrayList<Integer>>. 
+		Use net.mindview.TextFile to open a text file and read it in a word at a time 
+		(use "\\W+" as the second argument to the TextFile constructor). 
+		Count the words as you read them in, and for each word in the file, 
+		record in the ArrayList<Integer> the word count associated with that word—this is, 
+		in effect, the location in the file where that word was found.
+		*/
+		PrintExercise(25);
+		Map<String, ArrayList<Integer>> map_ex25 = new TreeMap<String, ArrayList<Integer>>();
+		// Set<String> words = new TreeSet<String>(new TextFile("src\\main\\java\\com\\thinkinginjava\\holdingyourobj\\Generator.java", "\\W+"));
+		ArrayList<String> arr_ex25 = new TextFile("src\\main\\java\\com\\thinkinginjava\\holdingyourobj\\testfile.txt", "\\W+");
 		
+		// System.out.println(words);
+		// Collections.sort(arr_ex25, String.CASE_INSENSITIVE_ORDER);
+		System.out.println(arr_ex25);
+
+		ArrayList<Integer> list;
+		int location = 0;
+		for (String str : arr_ex25) {
+			if (map_ex25.containsKey(str)) {
+				list = map_ex25.get(str);
+			} else {
+				list = new ArrayList<Integer>();
+			}
+			list.add(location);
+			map_ex25.put(str, list);
+			location++;
+		}
+		System.out.println(map_ex25);
 
 		/* 
-		Exercise 24: (2) Fill a LinkedHashMap with String keys and objects of your choice. Now extract the pairs, sort them based on the keys, and reinsert them into the Map.
+		Exercise 26: (4) Take the resulting Map from the previous exercise and 
+		re-create the order of the words as they appeared in the original file.
 		*/
+		PrintExercise(26);
+		Map<Integer, String> map_ex26 = new HashMap<Integer, String>();
 
-		/* 
-		Exercise 25: (3) Create a Map<String,ArrayList<Integer>>. Use net.mindview.TextFile to open a text file and read it in a word at a time (use "\\W+" as the second argument to the TextFile constructor). Count the words as you read them in, and for each word in the file, record in the ArrayList<Integer> the word count associated with that word—this is, in effect, the location in the file where that word was found.
-		*/
-
-		/* 
-		Exercise 26: (4) Take the resulting Map from the previous exercise and re-create the order of the words as they appeared in the original file.
-		*/
+		// store <order, result> pair
+		for (String key : map_ex25.keySet()) {
+			list = map_ex25.get(key);
+			for (Integer var : list) {
+				map_ex26.put(var, key);
+			}
+		}
+		// re-output
+		System.out.println(map_ex26);
+		for (Integer var : map_ex26.keySet()) {
+			System.out.print(map_ex26.get(var) + " ");
+		}
+		System.out.print("\n");
 	}
 }
