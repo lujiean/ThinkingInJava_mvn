@@ -6,8 +6,6 @@ package com.thinkinginjava.holdingyourobj;
 import static com.thinkinginjava.tools.Tools.*;
 import net.mindview.util.*;
 
-import java.awt.peer.SystemTrayPeer;
-import java.lang.reflect.Array;
 import java.util.*;
 public class Homework {
 
@@ -471,5 +469,13 @@ public class Homework {
 			System.out.print(map_ex26.get(var) + " ");
 		}
 		System.out.print("\n");
+
+		/* 
+		Exercise 27: (2) Write a class called Command that contains a String and has a method operation( ) that displays the String. 
+		Write a second class with a method that fills a Queue with Command objects and returns it. 
+		Pass the filled Queue to a method in a third class that consumes the objects in the Queue and calls their operation( ) methods.
+		*/
+		PrintExercise(27);
+
 	}
 }
