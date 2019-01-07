@@ -7,6 +7,8 @@ import static com.thinkinginjava.tools.Tools.*;
 import net.mindview.util.*;
 
 import java.util.*;
+
+import javax.management.Query;
 public class Homework {
 
 	public static void main(String[] args) {
@@ -476,6 +478,37 @@ public class Homework {
 		Pass the filled Queue to a method in a third class that consumes the objects in the Queue and calls their operation( ) methods.
 		*/
 		PrintExercise(27);
+		Queue<Command> que_ex27 = new LinkedList<Command>();
 
+		Ex27.func1(que_ex27, new Command("a"));
+		Ex27.func1(que_ex27, new Command("b"));
+		Ex27.func1(que_ex27, new Command("e"));
+
+		Ex27_1.func2(que_ex27);
+
+		/* 
+		Exercise 28: (2) Fill a PriorityQueue (using offer( )) with Double values created using java.util.Random, 
+		then remove the elements using poll( ) and display them.
+		*/
+		PrintExercise(28);
+		PriorityQueue<Double> pq_ex28 = new PriorityQueue<Double>();
+		Random rand = new Random(28);
+		for (i = 0; i < 5; i++) {
+			pq_ex28.offer(rand.nextDouble());
+		}
+		while(pq_ex28.peek() != null){
+			System.out.println("pq_ex28: " + pq_ex28.poll());
+		}
+
+		/* 
+		Exercise 29: (2) Create a simple class that inherits from Object and contains no members, 
+		and show that you cannot successfully add multiple elements of that class to a PriorityQueue. 
+		This issue will be fully explained in the Containers in Depth chapter.
+		*/
+		PrintExercise(29);
+		PriorityQueue<Ex29> pq_ex29 = new PriorityQueue<Ex29>();
+		pq_ex29.offer(new Ex29());
+		// Exception in thread "main" java.lang.ClassCastException: com.thinkinginjava.holdingyourobj.Ex29 cannot be cast to java.lang.Comparable
+		// pq_ex29.offer(new Ex29());
 	}
 }

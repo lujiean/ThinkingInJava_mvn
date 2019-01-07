@@ -6,15 +6,14 @@ Write a second class with a method that fills a Queue with Command objects and r
 Pass the filled Queue to a method in a third class that consumes the objects in the Queue and calls their operation( ) methods.
  */
 
-public class Command {
+import java.util.*;
 
-    private String str;
-
-    Command(String str){
-        this.str = str;
-    }
-
-    public void operation(){
-        System.out.println("operation: " + str);
+/**
+ * Second class
+ */
+public class Ex27{
+    public static Queue<Command> func1(Queue<Command> que, Command cmd){
+        que.offer(cmd);
+        return que;
     }
 }

@@ -5,16 +5,17 @@ Exercise 27: (2) Write a class called Command that contains a String and has a m
 Write a second class with a method that fills a Queue with Command objects and returns it. 
 Pass the filled Queue to a method in a third class that consumes the objects in the Queue and calls their operation( ) methods.
  */
+import java.util.*;
 
-public class Command {
+/**
+ * Third class
+ */
+public class Ex27_1 {
 
-    private String str;
-
-    Command(String str){
-        this.str = str;
-    }
-
-    public void operation(){
-        System.out.println("operation: " + str);
-    }
+    public static void func2(Queue<Command> que){
+        while(que.peek() != null)
+            // System.out.print(que.remove() + " ");
+            que.poll().operation();
+        System.out.println();
+    }   
 }
