@@ -510,5 +510,11 @@ public class Homework {
 		pq_ex29.offer(new Ex29());
 		// Exception in thread "main" java.lang.ClassCastException: com.thinkinginjava.holdingyourobj.Ex29 cannot be cast to java.lang.Comparable
 		// pq_ex29.offer(new Ex29());
+
+		/* 
+		Exercise 30: (5) Modify CollectionSequence.java so that it does not inherit from AbstractCollection, but instead implements Collection.
+		*/
+		PrintExercise(30);
+		
 	}
 }
